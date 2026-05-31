@@ -197,26 +197,6 @@ h1::first-letter {
   margin-bottom: 1.5rem;
 }
 
-.target-box {
-  display: grid;
-  place-items: center;
-  min-width: 8rem;
-  aspect-ratio: 1;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--panel-strong);
-}
-
-.target-box span {
-  color: var(--muted);
-  font-size: 0.8rem;
-}
-
-.target-box strong {
-  font-size: 2.4rem;
-  color: var(--gold);
-}
-
 .board-wrap {
   display: grid;
   place-items: center;
@@ -509,19 +489,6 @@ h1::first-letter {
 
   .title-row {
     display: grid;
-  }
-
-  .target-box {
-    min-width: 0;
-    width: 100%;
-    aspect-ratio: auto;
-    grid-template-columns: 1fr auto;
-    padding: 0.75rem 1rem;
-    justify-items: start;
-  }
-
-  .target-box strong {
-    font-size: 2rem;
   }
 
   .actions button {

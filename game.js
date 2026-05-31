@@ -47,7 +47,6 @@
     difficultyLabel: document.getElementById("difficulty-label"),
     timer: document.getElementById("timer"),
     gameStreak: document.getElementById("game-streak"),
-    targetSum: document.getElementById("target-sum"),
     board: document.getElementById("board"),
     message: document.getElementById("message"),
     numberPad: document.getElementById("number-pad"),
@@ -417,7 +416,6 @@
     state.abandonedCurrentPuzzle = true;
 
     els.difficultyLabel.textContent = DIFFICULTIES[difficulty].label;
-    els.targetSum.textContent = state.puzzle.target;
     els.winModal.classList.add("hidden");
     els.homeScreen.classList.remove("active");
     els.gameScreen.classList.add("active");

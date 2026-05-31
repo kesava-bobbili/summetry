@@ -21,7 +21,7 @@
           >
           <p class="kicker">3x3 equal-sum challenge</p>
           <h1 id="home-title">suMMetry</h1>
-          <p class="subtitle">Fill the grid so every row, column and diagonal adds up to S</p>
+          <p class="subtitle">Fill the grid so every row, column and diagonal shares one hidden sum</p>
         </header>
 
         <section class="status-strip home-stats" aria-label="Saved scores">
@@ -58,14 +58,10 @@
               <strong id="game-streak">0</strong>
             </div>
           </div>
-          <div class="title-row">
+          <div class="title-row title-row-single">
             <div>
-              <p class="kicker">Target-sum puzzle</p>
+              <p class="kicker">Hidden-sum puzzle</p>
               <h1 id="game-title">suMMetry</h1>
-            </div>
-            <div class="target-box" aria-live="polite">
-              <span>Target Sum</span>
-              <strong id="target-sum">15</strong>
             </div>
           </div>
         </header>
@@ -89,7 +85,7 @@
         <h2>Rules</h2>
         <p>
           Use digits <strong>1-9</strong> in the <strong>3x3</strong> grid. Repeats are allowed. Every row, every
-          column, and both diagonals must equal the target sum.
+          column, and both diagonals must equal the same hidden sum.
         </p>
         <p>
           The center is fixed by the math: it is always <strong>S / 3</strong>. Each puzzle has exactly one solution.
@@ -103,7 +99,7 @@
         <div class="feedback-guide">
           <h3>Feedback</h3>
           <p><span class="guide-dot good-dot"></span>Green cell - completed lines are correct.</p>
-          <p><span class="guide-dot bad-dot"></span>Red cell - a completed line misses the target.</p>
+          <p><span class="guide-dot bad-dot"></span>Red cell - completed lines do not match.</p>
         </div>
       </aside>
     </main>
