@@ -11,6 +11,7 @@ Live site: https://kesava-bobbili.github.io/summetry/
 3. Tap a number from 1-9 to fill it.
 4. Use the clear button to erase the selected cell.
 5. Complete the grid so all eight lines equal the same hidden sum.
+6. Use Reveal Answer if you want to see the full solution without scoring the puzzle.
 
 ## Rules
 

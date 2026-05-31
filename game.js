@@ -34,6 +34,7 @@
     seconds: 0,
     timerId: null,
     solved: false,
+    answerRevealed: false,
     abandonedCurrentPuzzle: false,
     streak: Number(localStorage.getItem(STORAGE.streak) || 0),
     best: Number(localStorage.getItem(STORAGE.best) || 0),
@@ -51,6 +52,7 @@
     message: document.getElementById("message"),
     numberPad: document.getElementById("number-pad"),
     hintButton: document.getElementById("hint-button"),
+    revealButton: document.getElementById("reveal-button"),
     newPuzzleButton: document.getElementById("new-puzzle-button"),
     homeButton: document.getElementById("home-button"),
     winModal: document.getElementById("win-modal"),
@@ -313,7 +315,7 @@
   }
 
   function selectCell(index) {
-    if (state.fixed[index] || state.solved) {
+    if (state.fixed[index] || state.solved || state.answerRevealed) {
       return;
     }
     state.selected = index;
@@ -321,6 +323,10 @@
   }
 
   function fillSelected(value) {
+    if (state.answerRevealed) {
+      showMessage("The full answer is revealed. Start a new puzzle to play again.", "warn");
+      return;
+    }
     if (state.selected === null || state.fixed[state.selected] || state.solved) {
       showMessage("Select an empty cell first.", "warn");
       return;
@@ -333,7 +339,7 @@
   }
 
   function revealHint() {
-    if (state.solved) {
+    if (state.solved || state.answerRevealed) {
       return;
     }
     const empty = state.grid.map((value, index) => (value === 0 && !state.fixed[index] ? index : null)).filter((index) => index !== null);
@@ -354,6 +360,23 @@
       hintedCell.classList.add("pulse");
     }
     checkWin();
+  }
+
+  function revealAnswer() {
+    if (state.solved || state.answerRevealed) {
+      return;
+    }
+    state.grid = state.puzzle.solution.slice();
+    state.grid.forEach((value, index) => {
+      if (!state.fixed[index]) {
+        state.hinted.add(index);
+      }
+    });
+    state.selected = null;
+    state.answerRevealed = true;
+    stopTimer();
+    showMessage("Answer revealed. This puzzle will not count toward score or streak.", "warn");
+    renderBoard();
   }
 
   function scorePuzzle() {
@@ -413,6 +436,7 @@
     state.selected = state.grid.findIndex((value, index) => value === 0 && !state.fixed[index]);
     state.hints = 0;
     state.solved = false;
+    state.answerRevealed = false;
     state.abandonedCurrentPuzzle = true;
 
     els.difficultyLabel.textContent = DIFFICULTIES[difficulty].label;
@@ -439,6 +463,7 @@
     });
 
     els.hintButton.addEventListener("click", revealHint);
+    els.revealButton.addEventListener("click", revealAnswer);
     els.newPuzzleButton.addEventListener("click", () => startPuzzle(state.difficulty, true));
     els.nextPuzzleButton.addEventListener("click", () => startPuzzle(state.difficulty, false));
     els.homeButton.addEventListener("click", goHome);

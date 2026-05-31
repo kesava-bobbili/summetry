@@ -145,11 +145,17 @@ h1::first-letter {
 
 .difficulty-button:first-child,
 #hint-button,
+#reveal-button,
 #next-puzzle-button {
   background: var(--gold);
   border-color: var(--gold);
   color: #171713;
   font-weight: 700;
+}
+
+#reveal-button {
+  background: var(--panel-strong);
+  color: var(--text);
 }
 
 .difficulty-button:nth-child(2) {
